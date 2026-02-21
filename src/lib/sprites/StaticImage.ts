@@ -38,8 +38,9 @@ export class StaticImage {
     if (this.scene.textures.exists(this.imageKey)) {
       this.createImage();
     } else {
-      // Load the image dynamically
-      this.scene.load.image(this.imageKey, this.imageKey);
+      // Load the image dynamically - strip leading '/' for relative path
+      const imageUrl = this.imageKey.startsWith('/') ? this.imageKey.slice(1) : this.imageKey;
+      this.scene.load.image(this.imageKey, imageUrl);
 
       this.scene.load.on(`filecomplete-image-${this.imageKey}`, () => {
         this.createImage();

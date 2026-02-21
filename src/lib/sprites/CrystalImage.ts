@@ -264,8 +264,9 @@ export class CrystalImage {
     if (this.scene.textures.exists(this.imageKey)) {
       this.showPreview();
     } else {
-      // Try to load dynamically
-      this.scene.load.image(this.imageKey, this.imageKey);
+      // Try to load dynamically - strip leading '/' for relative path
+      const imageUrl = this.imageKey.startsWith('/') ? this.imageKey.slice(1) : this.imageKey;
+      this.scene.load.image(this.imageKey, imageUrl);
       this.scene.load.once('complete', () => {
         if (this.scene.textures.exists(this.imageKey)) {
           this.showPreview();
@@ -504,8 +505,9 @@ export class CrystalImage {
 
   private revealImage(): void {
     if (!this.scene.textures.exists(this.imageKey)) {
-      // Try to load the image dynamically
-      this.scene.load.image(this.imageKey, this.imageKey);
+      // Try to load the image dynamically - strip leading '/' for relative path
+      const imageUrl = this.imageKey.startsWith('/') ? this.imageKey.slice(1) : this.imageKey;
+      this.scene.load.image(this.imageKey, imageUrl);
       this.scene.load.once('complete', () => {
         if (this.scene.textures.exists(this.imageKey)) {
           this.displayImage();
