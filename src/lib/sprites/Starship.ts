@@ -284,23 +284,29 @@ export class Starship {
   ): void {
     let isThrusting = false;
 
+    // Check for keyboard input (always check this first)
+    const left = this.inputState.left || cursors.left.isDown || wasd?.left.isDown || false;
+    const right = this.inputState.right || cursors.right.isDown || wasd?.right.isDown || false;
+    const up = this.inputState.up || cursors.up.isDown || wasd?.up.isDown || false;
+    const down = this.inputState.down || cursors.down.isDown || wasd?.down.isDown || false;
+    const hasKeyboardInput = left || right || up || down;
+
+    // Clear mouse control if keyboard is being used
+    if (hasKeyboardInput && this.useMouseRotation) {
+      this.clearMouseTarget();
+    }
+
     // Stop mouse control if pointer leaves canvas
     if (this.useMouseRotation && !isPointerOverCanvas) {
       this.clearMouseTarget();
       this.stop();
     }
 
-    // Mouse control takes priority when mouse is over canvas
-    if (this.useMouseRotation && this.mouseTarget) {
+    // Mouse control only when mouse is over canvas and no keyboard input
+    if (this.useMouseRotation && this.mouseTarget && !hasKeyboardInput) {
       isThrusting = this.updateMouseMovement();
     } else {
-      // Fall back to keyboard control
-      // Read from inputState (set by keyboard events) + current polling as fallback
-      const left = this.inputState.left || cursors.left.isDown || wasd?.left.isDown || false;
-      const right = this.inputState.right || cursors.right.isDown || wasd?.right.isDown || false;
-      const up = this.inputState.up || cursors.up.isDown || wasd?.up.isDown || false;
-      const down = this.inputState.down || cursors.down.isDown || wasd?.down.isDown || false;
-
+      // Keyboard control
       if (left) {
         this.body.setAccelerationX(-this.THRUST);
         isThrusting = true;
