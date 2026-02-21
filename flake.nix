@@ -11,15 +11,19 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
 
-        runDev = pkgs.writeShellScriptBin "slide-ship-dev" ''
-          if [ ! -d "node_modules" ]; then
-            echo "Installing dependencies..."
-            npm install
-          fi
-          echo "Starting Slide Ship dev server..."
-          echo "Open http://localhost:5173"
-          npm run dev
-        '';
+        runDev = pkgs.writeShellApplication {
+          name = "slide-ship-dev";
+          runtimeInputs = [ pkgs.nodejs_22 ];
+          text = ''
+            if [ ! -d "node_modules" ]; then
+              echo "Installing dependencies..."
+              npm install
+            fi
+            echo "Starting Slide Ship dev server..."
+            echo "Open http://localhost:5173"
+            npm run dev
+          '';
+        };
       in
       {
         apps.default = {
