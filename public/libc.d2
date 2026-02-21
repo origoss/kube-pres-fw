@@ -1,0 +1,104 @@
+# Simplified Language Runtime Architecture
+
+# Top Layer - Language Runtimes
+runtimes: {
+  label: "Language Runtimes"
+  style.fill: "#ecf0f1"
+
+  go: {
+    label: "Go"
+    style.fill: "#00ADD8"
+    style.font-color: white
+  }
+
+  python: {
+    label: "Python"
+    style.fill: "#3776ab"
+    style.font-color: white
+  }
+
+  nodejs: {
+    label: "Node.js"
+    style.fill: "#339933"
+    style.font-color: white
+  }
+
+  jvm: {
+    label: "JVM"
+    style.fill: "#ED8B00"
+    style.font-color: white
+  }
+
+  rust: {
+    label: "Rust"
+    style.fill: "#CE422B"
+    style.font-color: white
+  }
+}
+
+# Middle Layer - libc
+libc: {
+  label: "libc (POSIX API)"
+  style.fill: "#3498db"
+  style.font-color: white
+
+  examples: {
+    label: "malloc, printf, fopen, fread,\nfwrite, socket, connect"
+    style.font: mono
+    style.fill: "#2980b9"
+    style.font-color: white
+  }
+}
+
+# Bottom Layer - Linux Kernel
+kernel: {
+  label: "Linux Kernel (System Calls)"
+  style.fill: "#2c3e50"
+  style.font-color: white
+
+  examples: {
+    label: "open, read, write, close,\nsocket, connect, mmap, fork"
+    style.font: mono
+    style.fill: "#34495e"
+    style.font-color: white
+  }
+}
+
+# Direct connections (bypassing libc)
+runtimes.go -> kernel: {
+  label: "Direct syscalls"
+  style.stroke: "#e74c3c"
+  style.stroke-width: 3
+}
+
+# Indirect connections (via libc)
+runtimes.python -> libc: {
+  label: "POSIX API"
+  style.stroke: "#27ae60"
+  style.stroke-width: 3
+}
+
+runtimes.nodejs -> libc: {
+  label: "POSIX API"
+  style.stroke: "#27ae60"
+  style.stroke-width: 3
+}
+
+runtimes.jvm -> libc: {
+  label: "JNI + POSIX"
+  style.stroke: "#27ae60"
+  style.stroke-width: 3
+}
+
+runtimes.rust -> libc: {
+  label: "std library"
+  style.stroke: "#27ae60"
+  style.stroke-width: 3
+}
+
+# libc to kernel connection
+libc -> kernel: {
+  label: "Syscall wrappers"
+  style.stroke: "#27ae60"
+  style.stroke-width: 3
+}
