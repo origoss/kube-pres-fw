@@ -279,16 +279,16 @@ export class Starship {
 
   update(
     cursors: Phaser.Types.Input.Keyboard.CursorKeys,
-    wasd?: Phaser.Types.Input.Keyboard.CursorKeys,
     isPointerOverCanvas?: boolean
   ): void {
     let isThrusting = false;
 
     // Check for keyboard input (always check this first)
-    const left = this.inputState.left || cursors.left.isDown || wasd?.left.isDown || false;
-    const right = this.inputState.right || cursors.right.isDown || wasd?.right.isDown || false;
-    const up = this.inputState.up || cursors.up.isDown || wasd?.up.isDown || false;
-    const down = this.inputState.down || cursors.down.isDown || wasd?.down.isDown || false;
+    // inputState is set by keyboard events (includes both arrow keys and WASD)
+    const left = this.inputState.left || cursors.left.isDown || false;
+    const right = this.inputState.right || cursors.right.isDown || false;
+    const up = this.inputState.up || cursors.up.isDown || false;
+    const down = this.inputState.down || cursors.down.isDown || false;
     const hasKeyboardInput = left || right || up || down;
 
     // Clear mouse control if keyboard is being used
@@ -331,7 +331,7 @@ export class Starship {
     this.updateEngineGlow(isThrusting);
     this.updateRotation();
     this.updateGhostGlowPosition();
-    this.updateDebug(cursors, wasd);
+    this.updateDebug(cursors);
   }
 
   private updateMouseMovement(): boolean {
@@ -395,8 +395,7 @@ export class Starship {
   }
 
   private updateDebug(
-    cursors: Phaser.Types.Input.Keyboard.CursorKeys,
-    wasd?: Phaser.Types.Input.Keyboard.CursorKeys
+    cursors: Phaser.Types.Input.Keyboard.CursorKeys
   ): void {
     if (!this.debugText || !this.debugText.visible) return;
 
@@ -407,10 +406,11 @@ export class Starship {
     if (cursors.up.isDown) arrow.push('U');
     if (cursors.down.isDown) arrow.push('D');
 
-    if (wasd?.left.isDown) wasdKeys.push('A');
-    if (wasd?.right.isDown) wasdKeys.push('D');
-    if (wasd?.up.isDown) wasdKeys.push('W');
-    if (wasd?.down.isDown) wasdKeys.push('S');
+    // Use inputState for WASD (set by keyboard events)
+    if (this.inputState.left) wasdKeys.push('A');
+    if (this.inputState.right) wasdKeys.push('D');
+    if (this.inputState.up) wasdKeys.push('W');
+    if (this.inputState.down) wasdKeys.push('S');
 
     // Show inputState (event-based)
     const state = [];

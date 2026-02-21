@@ -42,7 +42,6 @@ export class RoomScene extends Phaser.Scene {
   private tables: Table[] = [];
   private customCursor!: Phaser.GameObjects.Graphics;
   private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
-  private wasd!: Phaser.Types.Input.Keyboard.CursorKeys;
   private fireKey!: Phaser.Input.Keyboard.Key;
   private slideManager!: SlideManager;
   private hud!: ArcadeHUD;
@@ -374,14 +373,6 @@ export class RoomScene extends Phaser.Scene {
     this.cursors = this.input.keyboard!.createCursorKeys();
     this.fireKey = this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-    // WASD keys as alternative to arrow keys
-    this.wasd = this.input.keyboard!.addKeys({
-      up: Phaser.Input.Keyboard.KeyCodes.W,
-      down: Phaser.Input.Keyboard.KeyCodes.S,
-      left: Phaser.Input.Keyboard.KeyCodes.A,
-      right: Phaser.Input.Keyboard.KeyCodes.D,
-    }) as Phaser.Types.Input.Keyboard.CursorKeys;
-
     // Setup event-based input handling for reliability
     this.setupKeyEvents();
 
@@ -612,7 +603,7 @@ export class RoomScene extends Phaser.Scene {
         this.starship.stop();
       }
 
-      this.starship.update(this.cursors, this.wasd, pointerActive);
+      this.starship.update(this.cursors, pointerActive);
 
       if (this.fireKey.isDown) {
         this.starship.shoot();
