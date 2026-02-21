@@ -47,8 +47,8 @@ If you have Nix with flakes enabled:
 # Enter development shell
 nix develop
 
-# Or use the helper command (auto-installs deps and starts server)
-nix run .#slide-ship-dev
+# Or run directly (auto-installs deps and starts server)
+nix run
 ```
 
 **Available commands in Nix shell:**
