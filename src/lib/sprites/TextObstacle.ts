@@ -285,16 +285,15 @@ export class TextObstacle {
           fontStyle = 'normal';
         }
 
-        // Build CSS font string for better cross-browser compatibility
-        // font: style weight size family
-        const stylePart = isItalic ? 'italic' : 'normal';
-        const weightPart = isBold ? 'bold' : 'normal';
-        const fontString = `${stylePart} ${weightPart} ${this.fontSize} ${this.fontFamily}`;
-
         const textObj = this.scene.add.text(currentX, currentY, segment.text, {
-          font: fontString,
+          fontSize: this.fontSize,
+          fontFamily: this.fontFamily,
           color: this.originalColor,
+          fontStyle: isItalic ? 'italic' : 'normal',
         });
+        if (isBold) {
+          textObj.setStyle({ fontWeight: 'bold' });
+        }
         textObj.setOrigin(0, 0.5);
         this.container.add(textObj);
         this.textObjects.push(textObj);
