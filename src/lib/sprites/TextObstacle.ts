@@ -274,17 +274,6 @@ export class TextObstacle {
         const isBold = segment.bold || this.fontStyle.includes('bold');
         const isItalic = segment.italic || this.fontStyle.includes('italic');
 
-        let fontStyle: string;
-        if (isBold && isItalic) {
-          fontStyle = 'bold italic';
-        } else if (isBold) {
-          fontStyle = 'bold';
-        } else if (isItalic) {
-          fontStyle = 'italic';
-        } else {
-          fontStyle = 'normal';
-        }
-
         const textObj = this.scene.add.text(currentX, currentY, segment.text, {
           fontSize: this.fontSize,
           fontFamily: this.fontFamily,
