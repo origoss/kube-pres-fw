@@ -4,7 +4,7 @@ A gamified presentation framework. Navigate your slides by piloting a starship t
 
 **[Live Demo](https://yourusername.github.io/slide-ship)** (Update this with your GitHub Pages URL)
 
-![Slide Ship Demo](public/images/demo.png)
+<!-- Add a screenshot here: ![Slide Ship Demo](public/images/demo.png) -->
 
 ## Features
 
