@@ -39,6 +39,23 @@ npm run dev
 # Open http://localhost:3000
 ```
 
+### Using Nix (Optional)
+
+If you have Nix with flakes enabled:
+
+```bash
+# Enter development shell
+nix develop
+
+# Or use the helper command (auto-installs deps and starts server)
+nix run .#slide-ship-dev
+```
+
+**Available commands in Nix shell:**
+- `slide-ship-dev` - Install dependencies (if needed) and start dev server on http://localhost:5173
+- `npm run dev` - Start dev server
+- `npm run build` - Build for production
+
 ### Creating Slides
 
 Edit `public/slides.md`:
