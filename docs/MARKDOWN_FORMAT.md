@@ -137,6 +137,16 @@ Crystal images are interactive elements that reveal images when shattered.
 ![crystal](/images/logo.png){x=200 y=300 w=150 h=150}
 ```
 
+### Separate Crystal Position
+
+Use `cx` and `cy` to position the crystal icon separately from the revealed image:
+
+```markdown
+![crystal](/images/logo.png){x=900 y=400 w=200 h=150 cx=1100 cy=500}
+```
+
+This places the crystal icon at (1100, 500) while the revealed image appears at (900, 400).
+
 ### Attributes
 
 | Attribute | Description | Default |
@@ -145,6 +155,8 @@ Crystal images are interactive elements that reveal images when shattered.
 | `y` | Vertical position (pixels from top) | Auto-distributed |
 | `w` / `width` | Image width in pixels | 200 |
 | `h` / `height` | Image height in pixels | 150 |
+| `cx` | Crystal icon horizontal position | Same as `x` |
+| `cy` | Crystal icon vertical position | Same as `y` |
 
 ### Multiple Images
 
