@@ -276,7 +276,6 @@ export class SlideManager {
 
     // Faster transition for keyboard navigation
     const CAMERA_DURATION = 300;
-    const SHIP_FLY_DURATION = 200;
 
     this.scene.tweens.add({
       targets: camera,

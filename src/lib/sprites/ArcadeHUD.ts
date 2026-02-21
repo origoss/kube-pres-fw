@@ -2,30 +2,30 @@ import Phaser from 'phaser';
 
 export class ArcadeHUD {
   private scene: Phaser.Scene;
-  private container: Phaser.GameObjects.Container;
+  private container!: Phaser.GameObjects.Container;
   private scoreText!: Phaser.GameObjects.Text;
   private topScoreText!: Phaser.GameObjects.Text;
   private slideText!: Phaser.GameObjects.Text;
   private crystalCountText!: Phaser.GameObjects.Text;
-  private livesContainer: Phaser.GameObjects.Container;
+  private _livesContainer: Phaser.GameObjects.Container;
   private lifeIcons: Phaser.GameObjects.Graphics[] = [];
 
   private score: number = 0;
   private crystalsShattered: number = 0;
-  private currentSlide: number = 1;
-  private totalSlides: number = 1;
+  private _currentSlide: number = 1;
+  private _totalSlides: number = 1;
 
   // Arcade colors
   private readonly COLOR_SCORE = '#ffff00'; // Yellow
   private readonly COLOR_CRYSTAL = '#00ffff'; // Cyan
   private readonly COLOR_LIVES = '#ff4444'; // Red
   private readonly COLOR_TEXT = '#ffffff'; // White
-  private readonly COLOR_BAR = '#1a1a3a'; // Dark blue
-  private readonly COLOR_BORDER = '#326ce5'; // Kubernetes blue
+  private readonly _COLOR_BAR = '#1a1a3a'; // Dark blue
+  private readonly _COLOR_BORDER = '#326ce5'; // Kubernetes blue
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
-    this.livesContainer = scene.add.container(0, 0);
+    this._livesContainer = scene.add.container(0, 0);
 
     this.createHUD();
   }

@@ -385,8 +385,8 @@ export class RoomScene extends Phaser.Scene {
     // Setup event-based input handling for reliability
     this.setupKeyEvents();
 
-    // Debug toggle key
-    const debugKey = this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.TILDE);
+    // Debug toggle key (BACKTICK is the `~ key)
+    const debugKey = this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.BACKTICK);
     debugKey.on('down', () => {
       this.starship.toggleDebug();
     });
@@ -591,7 +591,6 @@ export class RoomScene extends Phaser.Scene {
 
     // Update custom cursor position
     if (this.customCursor) {
-      const pointer = this.input.activePointer;
       this.customCursor.setPosition(0, 0);
     }
 
@@ -708,7 +707,7 @@ export class RoomScene extends Phaser.Scene {
       repeat: -1,
       ease: 'Sine.easeInOut',
       onUpdate: (tween) => {
-        const hue = tween.getValue();
+        const hue = tween.getValue() as number;
         this.drawCustomCursor(hue);
       },
     });
