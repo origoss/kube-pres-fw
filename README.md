@@ -2,7 +2,7 @@
 
 A gamified presentation framework. Navigate your slides by piloting a starship through space!
 
-**[Live Demo](https://yourusername.github.io/slide-ship)** (Update this with your GitHub Pages URL)
+**[Live Demo](https://origoss.github.io/kube-pres-fw/)**
 
 <!-- Add a screenshot here: ![Slide Ship Demo](public/images/demo.png) -->
 
