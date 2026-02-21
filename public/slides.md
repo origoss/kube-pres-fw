@@ -4,9 +4,17 @@
 
 **Fly through your slides** like a starship pilot!
 
-- Use **ARROW KEYS** or **WASD** to navigate
-- Press **SPACE** to shoot lasers
-- Bump into text to highlight it
+### Mouse Controls (Primary)
+- **Move mouse** - Ship follows your cursor
+- **Left click** - Shoot lasers
+
+### Keyboard Controls
+> Only work when mouse is **outside** the canvas
+
+- **ARROW KEYS** or **WASD** - Fly around
+- **SPACE** - Shoot lasers
+- **N** / **P** - Next / Previous slide
+
 - Fly off-screen edges to change slides
 
 ---

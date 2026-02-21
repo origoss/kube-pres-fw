@@ -118,6 +118,16 @@ npm run build
 
 ## Controls
 
+### Mouse (Primary)
+| Action | Control |
+|--------|---------|
+| Fly | Move mouse - ship follows cursor |
+| Shoot | Left click |
+| Navigate slides | Fly off-screen edges |
+
+### Keyboard (Secondary)
+> **Note:** Keyboard controls only work when the **mouse cursor is outside** the game canvas.
+
 | Key | Action |
 |-----|--------|
 | ↑ / W | Thrust forward |
