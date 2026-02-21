@@ -285,15 +285,17 @@ export class TextObstacle {
           fontStyle = 'normal';
         }
 
-        // Build CSS font string: style weight size family
-        const fontStyleStr = isItalic ? 'italic' : 'normal';
-        const fontWeightStr = isBold ? 'bold' : 'normal';
-        const fontString = `${fontStyleStr} ${fontWeightStr} ${this.fontSize} ${this.fontFamily}`;
-
         const textObj = this.scene.add.text(currentX, currentY, segment.text, {
-          font: fontString,
+          fontSize: this.fontSize,
+          fontFamily: this.fontFamily,
           color: this.originalColor,
         });
+        if (isBold) {
+          (textObj as Phaser.GameObjects.Text).setFontStyle('bold');
+        }
+        if (isItalic) {
+          (textObj as Phaser.GameObjects.Text).setFontStyle('italic');
+        }
         textObj.setOrigin(0, 0.5);
         this.container.add(textObj);
         this.textObjects.push(textObj);
