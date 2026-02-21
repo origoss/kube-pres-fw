@@ -89,7 +89,7 @@ export class RoomScene extends Phaser.Scene {
 
   private async loadSlides(): Promise<void> {
     try {
-      const response = await fetch('/slides.md', { cache: 'no-cache' });
+      const response = await fetch('slides.md', { cache: 'no-cache' });
       if (response.ok) {
         this.currentMarkdown = await response.text();
         this.lastModified = response.headers.get('last-modified');
@@ -119,7 +119,7 @@ export class RoomScene extends Phaser.Scene {
 
   private async checkForChanges(): Promise<void> {
     try {
-      const response = await fetch('/slides.md', { cache: 'no-cache', method: 'HEAD' });
+      const response = await fetch('slides.md', { cache: 'no-cache', method: 'HEAD' });
       if (response.ok) {
         const newModified = response.headers.get('last-modified');
         if (newModified && newModified !== this.lastModified && !this.slideManager.isInTransition()) {
