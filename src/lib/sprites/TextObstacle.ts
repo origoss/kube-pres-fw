@@ -289,7 +289,8 @@ export class TextObstacle {
           fontSize: this.fontSize,
           fontFamily: this.fontFamily,
           color: this.originalColor,
-          fontStyle: fontStyle,
+          fontStyle: isItalic ? 'italic' : 'normal',
+          fontWeight: isBold ? 'bold' : 'normal',
         });
         textObj.setOrigin(0, 0.5);
         this.container.add(textObj);
