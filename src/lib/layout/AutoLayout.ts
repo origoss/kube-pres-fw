@@ -100,6 +100,7 @@ export class AutoLayout {
           fontSize: '20px',
           color: '#88ff88',
           fontFamily: 'monospace',
+          align: 'left' as const,
         };
 
       case 'table':
