@@ -119,7 +119,7 @@ export class MarkdownParser {
 
       // Static images: ![alt](image.png){x=100 y=200} - NOT crystal images
       const staticImageMatch = line.trim().match(/^!\[([^\]]*)\]\(([^)]+)\)(?:\{([^}]+)\})?$/);
-      if (staticImageMatch && !line.includes('[crystal]')) {
+      if (staticImageMatch && staticImageMatch[1].trim().toLowerCase() !== 'crystal') {
         const filename = staticImageMatch[2].trim();
         const attrs = staticImageMatch[3] || '';
         const staticImg: StaticImage = { type: 'static', filename };

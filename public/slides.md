@@ -72,6 +72,10 @@ Use crystal images that shatter when you bump into them:
 - `x`, `y` - Position on screen
 - `w`, `h` - Width and height
 
+Try this live crystal in the current deck:
+
+![crystal](/images/crystal-demo.svg){x=980 y=420 w=150 h=150}
+
 Images go in the `public/images/` folder.
 
 ---
