@@ -27,6 +27,7 @@ const DEFAULT_CONFIG: LayoutConfig = {
 
 export class AutoLayout {
   private config: LayoutConfig;
+  private readonly BODY_TEXT_LINE_HEIGHT = 35;
 
   constructor(config: Partial<LayoutConfig> = {}) {
     this.config = { ...DEFAULT_CONFIG, ...config };
@@ -151,11 +152,15 @@ export class AutoLayout {
       }
       case 'bullet': {
         const bulletLineCount = element.content.split('\n').length;
-        return 35 * bulletLineCount;
+        return this.BODY_TEXT_LINE_HEIGHT * bulletLineCount;
       }
       case 'numbered': {
         const numLineCount = element.content.split('\n').length;
-        return 35 * numLineCount;
+        return this.BODY_TEXT_LINE_HEIGHT * numLineCount;
+      }
+      case 'paragraph': {
+        const paragraphLineCount = element.content.split('\n').length;
+        return this.BODY_TEXT_LINE_HEIGHT * paragraphLineCount;
       }
       case 'table': {
         // Calculate height based on number of rows
@@ -164,11 +169,12 @@ export class AutoLayout {
         const rowHeight = 40;
         return headerHeight + (rowCount * rowHeight);
       }
-      case 'code':
+      case 'code': {
         const lines = element.content.split('\n').length;
         return lines * 24 + 20;
+      }
       default:
-        return 35;
+        return this.BODY_TEXT_LINE_HEIGHT;
     }
   }
 
