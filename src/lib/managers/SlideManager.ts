@@ -29,7 +29,7 @@ export class SlideManager {
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
     this.parser = new MarkdownParser();
-    this.layout = new AutoLayout({ width: this.roomWidth });
+    this.layout = new AutoLayout(this.scene, { width: this.roomWidth });
   }
 
   loadMarkdown(markdown: string): void {
