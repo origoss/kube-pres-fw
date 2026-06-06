@@ -23,6 +23,22 @@
 
 ---
 
+# Multiline Text Layout
+
+## Regression Check
+
+This paragraph intentionally spans three lines to prove layout spacing is correct.\
+The second line should render directly below the first without creating overlap.\
+The third line should still leave enough vertical space for the next element.
+
+This line should appear clearly below the three-line paragraph.
+
+- This bullet also spans multiple lines to verify list spacing.\
+  The continuation line should stay attached to the same bullet.
+- This bullet should render below the multiline bullet without overlap.
+
+---
+
 # How to Create Slides
 
 ## Write Markdown
