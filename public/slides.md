@@ -74,6 +74,22 @@ More content here
 
 ---
 
+# Tables and spacing
+
+## Text after tables should never overlap
+
+| Feature | Why it matters |
+| --- | --- |
+| Table layout | This cell is intentionally long so it wraps onto multiple lines and grows the row height beyond the old fixed estimate. |
+| Following text | The paragraph below should render after the table with a clear gap instead of overlapping the final row. |
+
+This paragraph is the regression check. If the bug is fixed, it starts below the table border and remains fully readable.
+
+- This bullet should also stay below the paragraph.
+- Wrapping in the table above should not change the spacing incorrectly.
+
+---
+
 # Adding Images
 
 ## Interactive Crystals

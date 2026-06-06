@@ -1,3 +1,5 @@
+import Phaser from 'phaser';
+import { measureTable } from '../sprites/tableMeasurement';
 import { Slide, SlideElement } from '../parser/MarkdownParser';
 import { theme } from '../../theme.config';
 
@@ -26,10 +28,12 @@ const DEFAULT_CONFIG: LayoutConfig = {
 };
 
 export class AutoLayout {
+  private scene: Phaser.Scene;
   private config: LayoutConfig;
   private readonly BODY_TEXT_LINE_HEIGHT = 35;
 
-  constructor(config: Partial<LayoutConfig> = {}) {
+  constructor(scene: Phaser.Scene, config: Partial<LayoutConfig> = {}) {
+    this.scene = scene;
     this.config = { ...DEFAULT_CONFIG, ...config };
   }
 
@@ -68,7 +72,7 @@ export class AutoLayout {
           fontStyle: element.level === 2 || element.level === 3 ? 'bold' : 'normal',
         };
 
-      case 'bullet':
+      case 'bullet': {
         const bulletIndent = (element.level || 0) * 30;
         return {
           x: leftX + bulletIndent,
@@ -79,8 +83,9 @@ export class AutoLayout {
           fontFamily: 'Revalia',
           align: 'left' as const,
         };
+      }
 
-      case 'numbered':
+      case 'numbered': {
         const numberIndent = (element.level || 0) * 30;
         const number = element.number || 1;
         return {
@@ -92,6 +97,7 @@ export class AutoLayout {
           fontFamily: 'Revalia',
           align: 'left' as const,
         };
+      }
 
       case 'code':
         return {
@@ -105,15 +111,14 @@ export class AutoLayout {
         };
 
       case 'table':
-        // Tables are full-width, positioned at left padding
         return {
           x: leftX,
           y,
-          content: '', // Tables handle their own rendering
+          content: '',
           fontSize: '20px',
           color: theme.text.bodyColor,
           fontFamily: 'Revalia',
-          type: 'table' as const, // Special marker
+          type: 'table' as const,
         };
 
       case 'paragraph':
@@ -163,11 +168,11 @@ export class AutoLayout {
         return this.BODY_TEXT_LINE_HEIGHT * paragraphLineCount;
       }
       case 'table': {
-        // Calculate height based on number of rows
-        const rowCount = element.tableData?.rows.length || 0;
-        const headerHeight = 40;
-        const rowHeight = 40;
-        return headerHeight + (rowCount * rowHeight);
+        if (!element.tableData) {
+          return 0;
+        }
+
+        return measureTable(this.scene, element.tableData).totalHeight;
       }
       case 'code': {
         const lines = element.content.split('\n').length;
@@ -188,7 +193,7 @@ export class AutoLayout {
       case 'code':
         return 30;
       case 'table':
-        return 20;
+        return 35;
       default:
         return 20;
     }
